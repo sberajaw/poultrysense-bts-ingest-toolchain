@@ -57,31 +57,31 @@
         },
         "icf-namespace": {
             "title": {
-                "$ref": "#/messages/namespace.description"
+                "$ref": "#/messages/icf.namespace"
             },
             "type": "string"
         },
         "icf-namespace-id": {
             "title": {
-                "$ref": "#/messages/namespace.id.description"
+                "$ref": "#/messages/icf.namespace.id"
             },
             "type": "string"
         },
         "poultry-sense-host": {
             "title": {
-                "$ref": "#/messages/poultrysense.host.description"
+                "$ref": "#/messages/poultrysense.host"
             },
             "type": "string"
         },
         "poultry-sense-username": {
             "title": {
-                "$ref": "#/messages/poultrysense.username.description"
+                "$ref": "#/messages/poultrysense.username"
             },
             "type": "string"
         },
         "poultry-sense-password": {
             "title": {
-                "$ref": "#/messages/poultrysense.password.description"
+                "$ref": "#/messages/poultrysense.password"
             },
             "type": "string",
             "pattern": "\\S",
@@ -91,31 +91,31 @@
         },
         "bts-host": {
             "title": {
-                "$ref": "#/messages/bts.host.description"
+                "$ref": "#/messages/bts.host"
             },
             "type": "string"
         },
         "bts-org-id": {
             "title": {
-                "$ref": "#/messages/bts.org.id.description"
+                "$ref": "#/messages/bts.org.id"
             },
             "type": "string"
         },
         "bts-org-prefix": {
             "title": {
-                "$ref": "#/messages/bts.org.prefix.description"
+                "$ref": "#/messages/bts.org.prefix"
             },
             "type": "string"
         },
         "bts-org-hq-gln": {
             "title": {
-                "$ref": "#/messages/bts.org.hq.gln.description"
+                "$ref": "#/messages/bts.org.hq.gln"
             },
             "type": "string"
         },
         "bts-api-key": {
             "title": {
-                "$ref": "#/messages/bts.apikey.description"
+                "$ref": "#/messages/bts.apikey"
             },
             "type": "string",
             "pattern": "\\S",
@@ -195,9 +195,54 @@
             "columnCount": 3,
             "widths": ["40%", "20%", "40%"],
             "items": [
+              {
+                "type": "label",
+                "title": {
+                    "$ref": "#/messages/region"
+                }
+              },
+              {
+                "type": "label",
+                "title": ""
+              },
+              {
+                "type": "label",
+                "title": {
+                    "$ref": "#/messages/space"
+                }
+              },
+              {
+                "type": "text",
+                "readonly": false,
+                "title": {
+                  "$ref": "#/messages/icf.namespace"
+                },
+                "key": "icf-namespace"
+              },
+              {
+                "type": "label",
+                "title": ""
+              },
+              {
+                "type": "text",
+                "readonly": false,
+                "title": {
+                  "$ref": "#/messages/icf.namespace.id"
+                },
+                "key": "icf-namespace-id"
+              }
+            ]
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": ["40%", "20%", "40%"],
+            "items": [
                 {
                     "type": "label",
-                    "title": "Configuration for Poultry Sense"
+                    "title": {
+                        "$ref": "#/messages/poultrysense.configuration"
+                    }
                 },
                 {
                     "type": "label",
@@ -205,11 +250,15 @@
                 },
                 {
                     "type": "label",
-                    "title": "Configuration for IBM Blockchain Transparent Supply"
+                    "title": {
+                        "$ref": "#/messages/bts.configuration"
+                    }
                 },
                 {
                     "type": "section",
-                    "title": "Configuration for Poultry Sense",
+                    "title": {
+                        "$ref": "#/messages/poultrysense.configuration"
+                    },
                     "items": [
                        "poultry-sense-host",
                        "poultry-sense-username",
@@ -229,7 +278,9 @@
                 },
                 {
                     "type": "section",
-                    "title": "Configuration for IBM Blockchain Transparent Supply",
+                    "title": {
+                        "$ref": "#/messages/bts.configuration"
+                    },
                     "items": [
                        "bts-host",
                        "bts-org-id",
@@ -239,29 +290,13 @@
                         "type": "password",
                         "readonly": false,
                         "title": {
-                          "$ref": "#/messages/bts.apikey.description"
+                          "$ref": "#/messages/bts.apikey"
                         },
                         "key": "bts-api-key"
                        }
                     ]
                  }
             ]
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/namespace.description"
-            },
-            "key": "icf-namespace"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/namespace.id.description"
-            },
-            "key": "icf-namespace-id"
         }
     ]
 }

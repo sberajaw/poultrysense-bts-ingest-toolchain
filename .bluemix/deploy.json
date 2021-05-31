@@ -183,27 +183,32 @@
             ]
         },
         {
-            "type": "section",
-            "description": "Configuration for Poultry Sense",
-            "title": "This is a title",
+            "type": "table",
+            "columnCount": 2,
+            "widths": ["50%", "50%"],
             "items": [
-               "poultry-sense-host",
-               "poultry-sense-username",
-               "poultry-sense-password"
+                {
+                    "type": "section",
+                    "title": "Configuration for Poultry Sense",
+                    "items": [
+                       "poultry-sense-host",
+                       "poultry-sense-username",
+                       "poultry-sense-password"
+                    ]
+                },
+                {
+                    "type": "section",
+                    "title": "Configuration for IBM Blockchain Transparent Supply",
+                    "items": [
+                       "bts-host",
+                       "bts-org-id",
+                       "bts-org-prefix",
+                       "bts-org-hq-gln",
+                       "bts-api-key"
+                    ]
+                 }
             ]
         },
-        {
-            "type": "section",
-            "description": "Configuration for IBM Blockchain Transparent Supply",
-            "title": "This is a title",
-            "items": [
-               "bts-host",
-               "bts-org-id",
-               "bts-org-prefix",
-               "bts-org-hq-gln",
-               "bts-api-key"
-            ]
-         },
         {
             "type": "text",
             "readonly": false,

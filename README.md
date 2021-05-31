@@ -1,4 +1,4 @@
-# Serverless Data Pipeline to ingest Data from Poultry Sense into IBM Food Trust
+# Serverless Data Pipeline: Poultry Sense -> IBM Food Trust Data Ingestor
 
 This repository includes toolchain code to deploy a serverless application that uses Python and IBM Cloud Functions.
 

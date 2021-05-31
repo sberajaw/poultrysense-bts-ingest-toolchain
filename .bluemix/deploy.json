@@ -191,6 +191,12 @@
             ]
         },
         {
+            "type": "label",
+            "title": {
+                "$ref": "#/messages/icf.configuration"
+            }
+        },
+        {
             "type": "table",
             "columnCount": 3,
             "widths": ["40%", "20%", "40%"],
@@ -198,7 +204,7 @@
               {
                 "type": "label",
                 "title": {
-                    "$ref": "#/messages/region"
+                    "$ref": "#/messages/icf.namespace"
                 }
               },
               {
@@ -208,7 +214,7 @@
               {
                 "type": "label",
                 "title": {
-                    "$ref": "#/messages/space"
+                    "$ref": "#/messages/icf.namespace.id"
                 }
               },
               {
@@ -266,7 +272,7 @@
                         "type": "password",
                         "readonly": false,
                         "title": {
-                          "$ref": "#/messages/poultrysense.password.description"
+                          "$ref": "#/messages/poultrysense.password"
                         },
                         "key": "poultry-sense-password"
                        }

@@ -17,7 +17,7 @@ You can then review the [Actions](https://cloud.ibm.com/functions/actions) in th
 ### Deploying to IBM Cloud
 
 <p align="center">
-    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https%3A%2F%2Fgithub.com%2Fsberajaw%2Fpoultrysense-bts-ingest&branch=main">
+    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https%3A%2F%2Fgithub.com%2Fsberajaw%2Fpoultrysense-bts-ingest-toolchain&branch=main">
     <img src="https://cloud.ibm.com/devops/graphics/create_toolchain_button.png" alt="Create toolchain">
     </a>
 </p>

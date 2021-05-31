@@ -68,7 +68,7 @@
             "type": "string"
         },
         "poultry-sense-host": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/poultrysense.host.description"
             },
             "type": "string"
@@ -83,7 +83,11 @@
             "description": {
                 "$ref": "#/messages/poultrysense.password.description"
             },
-            "type": "string"
+            "type": "string",
+            "pattern": "\\S",
+            "validator": {
+                "v-type": "api-key"
+            }
         },
         "bts-host": {
             "description": {
@@ -113,7 +117,11 @@
             "description": {
                 "$ref": "#/messages/bts.apikey.description"
             },
-            "type": "string"
+            "type": "string",
+            "pattern": "\\S",
+            "validator": {
+                "v-type": "api-key"
+            }
         }
     },
     "required": [
@@ -215,7 +223,14 @@
                        "bts-org-id",
                        "bts-org-prefix",
                        "bts-org-hq-gln",
-                       "bts-api-key"
+                       {
+                        "type": "password",
+                        "readonly": false,
+                        "title": {
+                          "$ref": "#/messages/bts.apikey.description"
+                        },
+                        "key": "bts-api-key"
+                       }
                     ]
                  }
             ]
@@ -235,70 +250,6 @@
               "$ref": "#/messages/namespace.id.description"
             },
             "key": "icf-namespace-id"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/poultrysense.host.description"
-            },
-            "key": "poultry-sense-host"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/poultrysense.username.description"
-            },
-            "key": "poultry-sense-username"
-        },
-        {
-            "type": "password",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/poultrysense.password.description"
-            },
-            "key": "poultry-sense-password"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/bts.host.description"
-            },
-            "key": "bts-host"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/bts.org.id.description"
-            },
-            "key": "bts-org-id"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/bts.org.prefix.description"
-            },
-            "key": "bts-org-prefix"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/bts.org.hq.gln.description"
-            },
-            "key": "bts-org-hq-gln"
-        },
-        {
-            "type": "password",
-            "readonly": false,
-            "title": {
-              "$ref": "#/messages/bts.apikey.description"
-            },
-            "key": "bts-api-key"
         }
     ]
 }

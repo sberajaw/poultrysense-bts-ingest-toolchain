@@ -193,7 +193,14 @@
                     "items": [
                        "poultry-sense-host",
                        "poultry-sense-username",
-                       "poultry-sense-password"
+                       {
+                        "type": "password",
+                        "readonly": false,
+                        "title": {
+                          "$ref": "#/messages/poultrysense.password.description"
+                        },
+                        "key": "poultry-sense-password"
+                       }
                     ]
                 },
                 {

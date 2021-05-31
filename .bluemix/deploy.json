@@ -196,6 +196,7 @@
                        "poultry-sense-password"
                     ]
                 },
+                {},
                 {
                     "type": "section",
                     "title": "Configuration for IBM Blockchain Transparent Supply",

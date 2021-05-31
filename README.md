@@ -1,32 +1,12 @@
-<p align="center">
-    <a href="https://cloud.ibm.com">
-        <img src="https://landscape.cncf.io/logos/ibm-cloud-kcsp.svg" height="100" alt="IBM Cloud">
-    </a>
-</p>
+# Serverless Data Pipeline to ingest Data from Poultry Sense into IBM Food Trust
 
+This repository includes toolchain code to deploy a serverless application that uses Python and IBM Cloud Functions.
 
-<p align="center">
-    <a href="https://cloud.ibm.com">
-    <img src="https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg" alt="IBM Cloud">
-    </a>
-    <img src="https://img.shields.io/badge/platform-node-lightgrey.svg?style=flat" alt="platform">
-    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
-</p>
-
-
-# Develop a Cloud Functions Node.js application
-
-This repository includes toolchain code to deploy a serverless Backend-for-Frontend (BFF) application that uses Node.js and IBM Cloud Functions. Cloud Functions supplies basic Create, Read, Update, and Delete operations in a serverless environment. These functions can be mapped to an API gateway and then integrated into an iOS app; for example, to enable persistence of data into a Cloudant NoSQL Database or any other NoSQL database.
-
-## Included components
+## Included toolchain components
 
 * [Continuous Delivery](https://cloud.ibm.com/catalog/services/continuous-delivery): Enable tool integrations that support your development, deployment, and operation tasks.
-* [GitLab](https://about.gitlab.com/): GitLab unifies issues, code review, CI, and CD into a single UI.
-
-## Featured technologies
-
-* [IBM Cloud Functions](https://cloud.ibm.com/functions): An event-action platform that allows you to run code in response to an event.
-* [Node](https://nodejs.org/en/): An open-source JavaScript runtime environment for running server-side JavaScript code.
+* [GitHub](https://github.com/about): Store your source code in a new or existing repository on GitHub.com and engage in 
+social coding through wikis, issue tracking, and pull requests
 
 ## Steps
 

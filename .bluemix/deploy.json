@@ -56,13 +56,13 @@
           }
         },
         "icf-namespace": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/namespace.description"
             },
             "type": "string"
         },
         "icf-namespace-id": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/namespace.id.description"
             },
             "type": "string"
@@ -74,13 +74,13 @@
             "type": "string"
         },
         "poultry-sense-username": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/poultrysense.username.description"
             },
             "type": "string"
         },
         "poultry-sense-password": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/poultrysense.password.description"
             },
             "type": "string",
@@ -96,25 +96,25 @@
             "type": "string"
         },
         "bts-org-id": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/bts.org.id.description"
             },
             "type": "string"
         },
         "bts-org-prefix": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/bts.org.prefix.description"
             },
             "type": "string"
         },
         "bts-org-hq-gln": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/bts.org.hq.gln.description"
             },
             "type": "string"
         },
         "bts-api-key": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/bts.apikey.description"
             },
             "type": "string",

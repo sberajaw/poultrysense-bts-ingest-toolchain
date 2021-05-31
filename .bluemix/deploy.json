@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/deploy.title"
+    },
+    "description": {
+        "$ref": "#/messages/deploy.description"
+    },
+    "longDescription": {
+        "$ref": "#/messages/deploy.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "api-key": {
+            "description": {
+                "$ref": "#/messages/deploy.apikeyDescription"
+            },
+            "type": "string",
+            "pattern": "\\S",
+            "validator": {
+                "v-type": "api-key"
+            }
+        },
+        "dev-region": {
+            "description": {
+                "$ref": "#/messages/region.description"
+            },
+            "type": "string",
+            "validator": {
+                "v-type": "cf-region",
+                "params": ["api-key"]
+            },
+            "disabled": false
+        },
+        "dev-organization": {
+            "description": {
+                "$ref": "#/messages/organization.description"
+            },
+          "type": "string",
+          "validator": {
+              "v-type": "cf-org",
+              "params": ["dev-region"]
+          }
+        },
+        "dev-space": {
+            "description": {
+                "$ref": "#/messages/space.description"
+            },
+          "type": "string",
+          "validator": {
+              "v-type": "cf-space",
+              "params": ["dev-organization"]
+          }
+        }
+    },
+    "required": [
+        "api-key",
+        "dev-region", 
+        "dev-organization", 
+        "dev-space"
+    ],
+    "form": [{
+            "type": "validator",
+            "url": "/devops/validator/validator-v1.html"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.apikey"
+            },
+            "key": "api-key"
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": ["33%", "33%", "33%"],
+            "items": [
+              {
+                "type": "label",
+                "title": {
+                    "$ref": "#/messages/region"
+                }
+              },
+              {
+                "type": "label",
+                "title": {
+                    "$ref": "#/messages/organization"
+                }
+              },
+              {
+                "type": "label",
+                "title": {
+                    "$ref": "#/messages/space"
+                }
+              },
+              {
+                "type": "select",
+                "key": "dev-region"
+              },
+              {
+                "type": "select",
+                "key": "dev-organization"
+              },
+              {
+                "type": "select",
+                "key": "dev-space",
+                "readonly": false
+              }
+            ]
+          }
+    ]
+}

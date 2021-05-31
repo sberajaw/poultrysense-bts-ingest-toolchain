@@ -1,0 +1,104 @@
+stages:
+- name: Build Stage
+  inputs:
+  - type: git
+    branch: master
+    service: ${GIT_REPO}
+  triggers:
+  - type: stage
+  jobs:
+  - name: Build
+    type: builder
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+  triggers:
+  - type: stage
+  properties:
+  - name: FN_PACKAGE
+    value: CloudFunctionsNodejs
+    type: text
+  jobs:
+  - name: Deploy
+    type: deployer
+    deploy_type: cf
+    artifact_dir: ''
+    build_type: shell
+    target:
+      region_id: ${REGION_ID}
+      organization: ${ORGANIZATION}
+      space: ${SPACE}
+      application: ${APP}
+      api_key: ${API_KEY}
+    script: |-
+      #!/bin/bash
+      #set -o xtrace
+      ibmcloud login -a ${CF_TARGET_URL} --apikey ${PIPELINE_BLUEMIX_API_KEY}
+      ibmcloud target --cf -o ${CF_ORG} -s ${CF_SPACE}
+
+      ################################################################
+      # Install dependencies
+      ################################################################
+      echo 'Installing dependencies...'
+      sudo apt-get -qq update 1>/dev/null
+      sudo apt-get -qq install jq 1>/dev/null
+      sudo apt-get -qq install figlet 1>/dev/null
+
+      ################################################################
+      # Fetch auth credentials
+      ################################################################
+
+      figlet 'IBM Cloud'
+
+      echo 'Retrieving Cloud Functions authorization key...'
+
+      ibmcloud fn api list
+
+      ################################################################
+      # Deploy 
+      ################################################################
+
+      figlet 'Deploy'
+
+      echo "Running deploy..."
+      ibmcloud fn deploy
+
+- name: Health Stage
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+  triggers:
+  - type: stage
+  permission:
+    execute: TOOLCHAIN_ADMINS
+  jobs:
+  - name: Test
+    type: deployer
+    artifact_dir: ''
+    build_type: shell
+    target:
+      region_id: ${REGION_ID}
+      organization: ${ORGANIZATION}
+      space: ${SPACE}
+      application: ${APP}
+      api_key: ${API_KEY}
+    script: |-
+      #!/bin/sh
+      ibmcloud login -a ${CF_TARGET_URL} --apikey ${PIPELINE_BLUEMIX_API_KEY}
+      ibmcloud target --cf -o ${CF_ORG} -s ${CF_SPACE}
+      if [ "$(ibmcloud fn action invoke CloudFunctionsNodejs/readAll | grep ok:)" != "" ]; then
+        echo "Successfully reached health endpoint."
+      else
+        echo "Could not reach the health endpoint."
+        exit 1
+      fi
+    test_type: customimage
+    docker_image: alpine
+hooks:
+- enabled: true
+  label: null
+  ssl_enabled: false
+  url: http://lms-api/v1/messaging/webhook/publish

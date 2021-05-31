@@ -1,0 +1,81 @@
+version: '2'
+messages:
+  $i18n: locales.yml
+template:
+  name:
+    $ref: "#/messages/template.name"
+  description:
+    $ref: "#/messages/template.description"
+  required:
+    - repo
+    - build
+  info:
+    git url: >
+      "[" + $env.repository + "]" +
+        "(" + $env.repository + ")"
+    git branch: >
+      "[" + $env.branch + "]" +
+        "(" + $env.repository +
+          "/tree/" + $env.branch + ")"
+
+toolchain:
+  name: poultrysense-bts-ingest-{{timestamp}}
+  template:
+    getting_started:
+      $ref: "#/messages/template.gettingStarted"
+
+services:
+
+  # Github repos
+  repo:
+    service_id: >
+      $env.source_provider ? $env.source_provider : 'githubpublic'
+    parameters:
+      repo_name: '{{toolchain.name}}'
+      repo_url: >
+        $env.type === 'link' ? 
+          $env.app_repo : 'https://github.com/sberajaw/poultrysense-bts-ingest'
+      source_repo_url: >
+        $env.type === 'fork' || $env.type === 'clone' ? 
+          $env.app_repo : 'https://github.com/sberajaw/poultrysense-bts-ingest'
+      type: $env.type || 'clone'
+      has_issues: true
+      enable_traceability: true
+
+  # Pipelines
+  build:
+    service_id: pipeline
+    parameters:
+      services: 
+        - repo
+      name: "{{services.repo.parameters.repo_name}}"
+      ui-pipeline: true
+      configuration:
+        content: 
+          $text: pipeline.yml
+        env:
+          GIT_REPO: repo
+          APP: "{{services.repo.parameters.repo_name}}"
+          REGION_ID: "{{form.pipeline.parameters.dev-region}}"
+          ORGANIZATION: "{{form.pipeline.parameters.dev-organization}}"
+          SPACE: "{{form.pipeline.parameters.dev-space}}"
+          API_KEY: "{{form.pipeline.parameters.api-key}}"
+          FN_PACKAGE: "{{form.pipeline.parameters.fn-package}}"
+        execute: true
+
+  #Web IDE
+  webide:
+    service_id: orion
+
+#Deployment
+form:
+  pipeline:
+    schema:
+      $ref: deploy.json
+    parameters:
+      dev-region: "{{deploymentRegion}}"
+      dev-organization: "{{deploymentOrg}}"
+      dev-space: "{{deploymentSpace}}"
+      api-key: "{{api-key}}"
+      fn-package: "{{fn-package}}"
+

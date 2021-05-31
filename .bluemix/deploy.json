@@ -68,7 +68,7 @@
             "type": "string"
         },
         "poultry-sense-host": {
-            "title": {
+            "description": {
                 "$ref": "#/messages/poultrysense.host.description"
             },
             "type": "string"
@@ -90,7 +90,7 @@
             }
         },
         "bts-host": {
-            "description": {
+            "title": {
                 "$ref": "#/messages/bts.host.description"
             },
             "type": "string"

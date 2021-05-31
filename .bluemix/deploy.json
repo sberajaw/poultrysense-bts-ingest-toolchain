@@ -183,6 +183,17 @@
             ]
         },
         {
+            "type": "section",
+            "description": "Configuration for IBM Blockchain Transparent Supply",
+            "items": [
+               "bts-host",
+               "bts-org-id",
+               "bts-org-prefix",
+               "bts-org-hq-gln",
+               "bts-api-key"
+            ]
+         },
+        {
             "type": "text",
             "readonly": false,
             "title": {

@@ -54,13 +54,83 @@
               "v-type": "cf-space",
               "params": ["dev-organization"]
           }
+        },
+        "icf-namespace": {
+            "description": {
+                "$ref": "#/messages/namespace.description"
+            },
+            "type": "string"
+        },
+        "icf-namespace-id": {
+            "description": {
+                "$ref": "#/messages/namespace.id.description"
+            },
+            "type": "string"
+        },
+        "poultry-sense-host": {
+            "description": {
+                "$ref": "#/messages/poultrysense.host.description"
+            },
+            "type": "string"
+        },
+        "poultry-sense-username": {
+            "description": {
+                "$ref": "#/messages/poultrysense.username.description"
+            },
+            "type": "string"
+        },
+        "poultry-sense-password": {
+            "description": {
+                "$ref": "#/messages/poultrysense.password.description"
+            },
+            "type": "string"
+        },
+        "bts-host": {
+            "description": {
+                "$ref": "#/messages/bts.host.description"
+            },
+            "type": "string"
+        },
+        "bts-org-id": {
+            "description": {
+                "$ref": "#/messages/bts.org.id.description"
+            },
+            "type": "string"
+        },
+        "bts-org-prefix": {
+            "description": {
+                "$ref": "#/messages/bts.org.prefix.description"
+            },
+            "type": "string"
+        },
+        "bts-org-hq-gln": {
+            "description": {
+                "$ref": "#/messages/bts.org.hq.gln.description"
+            },
+            "type": "string"
+        },
+        "bts-api-key": {
+            "description": {
+                "$ref": "#/messages/bts.apikey.description"
+            },
+            "type": "string"
         }
     },
     "required": [
         "api-key",
         "dev-region", 
         "dev-organization", 
-        "dev-space"
+        "dev-space",
+        "icf-namespace",
+        "icf-namespace-id",
+        "poultry-sense-host",
+        "poultry-sense-username",
+        "poultry-sense-password",
+        "bts-host",
+        "bts-org-id",
+        "bts-org-prefix",
+        "bts-org-hq-gln",
+        "bts-api-key"
     ],
     "form": [{
             "type": "validator",
@@ -111,6 +181,86 @@
                 "readonly": false
               }
             ]
-          }
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/namespace.description"
+            },
+            "key": "icf-namespace"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/namespace.id.description"
+            },
+            "key": "icf-namespace-id"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/poultrysense.host.description"
+            },
+            "key": "poultry-sense-host"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/poultrysense.username.description"
+            },
+            "key": "poultry-sense-username"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/poultrysense.password.description"
+            },
+            "key": "poultry-sense-password"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/bts.host.description"
+            },
+            "key": "bts-host"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/bts.org.id.description"
+            },
+            "key": "bts-org-id"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/bts.org.prefix.description"
+            },
+            "key": "bts-org-prefix"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/bts.org.hq.gln.description"
+            },
+            "key": "bts-org-hq-gln"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": {
+              "$ref": "#/messages/bts.apikey.description"
+            },
+            "key": "bts-api-key"
+        }
     ]
 }

@@ -27,7 +27,6 @@ toolchain:
       $ref: "#/messages/template.gettingStarted"
 
 services:
-  # Github repos
   repo:
     service_id: >
       $env.source_provider ? $env.source_provider : 'githubpublic'
@@ -50,7 +49,7 @@ services:
       services: 
         - repo
       name: "{{services.repo.parameters.repo_name}}"
-      ui-pipeline: true
+      ui-pipeline: false
       configuration:
         content: 
           $text: pipeline.yml
@@ -62,6 +61,16 @@ services:
           SPACE: "{{form.pipeline.parameters.dev-space}}"
           API_KEY: "{{form.pipeline.parameters.api-key}}"
           FN_PACKAGE: "{{form.pipeline.parameters.fn-package}}"
+          ICF_NAMESPACE: "{{form.pipeline.parameters.icf-namespace}}"
+          ICF_NAMESPACE_ID: "{{form.pipeline.parameters.icf-namespace-id}}"
+          POULTRY_SENSE_HOST: "{{form.pipeline.parameters.poultry-sense-host}}"
+          POULTRY_SENSE_USERNAME: "{{form.pipeline.parameters.poultry-sense-username}}"
+          POULTRY_SENSE_PASSWORD: "{{form.pipeline.parameters.poultry-sense-password}}"
+          BTS_HOST: "{{form.pipeline.parameters.bts-host}}"
+          BTS_ORG_ID: "{{form.pipeline.parameters.bts-org-id}}"
+          BTS_ORG_PREFIX: "{{form.pipeline.parameters.bts-org-prefix}}"
+          BTS_ORG_HQ_GLN: "{{form.pipeline.parameters.bts-org-hq-gln}}"
+          BTS_API_KEY: "{{form.pipeline.parameters.bts-api-key}}"
         execute: true
 
   #Web IDE
@@ -79,4 +88,14 @@ form:
       dev-space: "{{deploymentSpace}}"
       api-key: "{{api-key}}"
       fn-package: "{{fn-package}}"
+      icf-namespace: "{{icfNamespace}}"
+      icf-namespace-id: "{{icfNamespaceId}}"
+      poultry-sense-host: "{{poultrySenseHost}}"
+      poultry-sense-username: "{{poultrySenseUsername}}"
+      poultry-sense-password: "{{poultrySensePassword}}"
+      bts-host: "{{btsHost}}"
+      bts-org-id: "{{btsOrgId}}"
+      bts-org-prefix: "{{btsOrgPrefix}}"
+      bts-org-hq-gln: "{{btsOrgHqGLN}}"
+      bts-api-key: "{{btsApiKey}}"
 

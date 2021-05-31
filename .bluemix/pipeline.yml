@@ -2,10 +2,10 @@ stages:
 - name: Build Stage
   inputs:
   - type: git
-    branch: master
+    branch: main
     service: ${GIT_REPO}
   triggers:
-  - type: stage
+  - type: commit
   jobs:
   - name: Build
     type: builder
@@ -17,9 +17,36 @@ stages:
   triggers:
   - type: stage
   properties:
-  - name: FN_PACKAGE
-    value: CloudFunctionsNodejs
+  - name: ICF_NAMESPACE
+    value: ${ICF_NAMESPACE}
     type: text
+  - name: ICF_NAMESPACE_ID
+    value: ${ICF_NAMESPACE_ID}
+    type: text
+  - name: POULTRY_SENSE_HOST
+    value: ${POULTRY_SENSE_HOST}
+    type: text
+  - name: POULTRY_SENSE_USERNAME
+    value: ${POULTRY_SENSE_USERNAME}
+    type: text
+  - name: POULTRY_SENSE_PASSWORD
+    value: ${POULTRY_SENSE_PASSWORD}
+    type: secure
+  - name: BTS_HOST
+    value: ${BTS_HOST}
+    type: text
+  - name: BTS_ORG_ID
+    value: ${BTS_ORG_ID}
+    type: text
+  - name: BTS_ORG_PREFIX
+    value: ${BTS_ORG_PREFIX}
+    type: text
+  - name: BTS_ORG_HQ_GLN
+    value: ${BTS_ORG_HQ_GLN}
+    type: text
+  - name: BTS_API_KEY
+    value: ${BTS_API_KEY}
+    type: secure
   jobs:
   - name: Deploy
     type: deployer

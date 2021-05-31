@@ -7,6 +7,7 @@ This repository includes toolchain code to deploy a serverless data pipeline tha
 * [Continuous Delivery](https://cloud.ibm.com/catalog/services/continuous-delivery): Enable tool integrations that support your development, deployment, and operation tasks.
 * [GitHub](https://github.com/about): Store your source code in a new or existing repository on GitHub.com and engage in 
 social coding through wikis, issue tracking, and pull requests
+* [Eclipse Orion Web IDE](https://projects.eclipse.org/projects/ecd.orion): Develop for the web and the cloud in this browser-based integrated development environment (IDE)
 
 ## Steps
 

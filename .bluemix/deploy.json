@@ -184,7 +184,18 @@
         },
         {
             "type": "section",
+            "description": "Configuration for Poultry Sense",
+            "title": "This is a title",
+            "items": [
+               "poultry-sense-host",
+               "poultry-sense-username",
+               "poultry-sense-password"
+            ]
+        },
+        {
+            "type": "section",
             "description": "Configuration for IBM Blockchain Transparent Supply",
+            "title": "This is a title",
             "items": [
                "bts-host",
                "bts-org-id",

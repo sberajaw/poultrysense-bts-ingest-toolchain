@@ -1,6 +1,6 @@
-# Serverless Data Pipeline: Poultry Sense -> IBM Food Trust Data Ingestor
+# Toolchain for Poultry Sense Data Ingestor
 
-This repository includes toolchain code to deploy a serverless application that uses Python and IBM Cloud Functions.
+This repository includes toolchain code to deploy a serverless data pipeline that uses Python and IBM Cloud Functions. The pipeline synchronizes data from Poultry Sense with IBM Food Trust. 
 
 ## Included toolchain components
 
@@ -58,7 +58,7 @@ You can then review the [Actions](https://cloud.ibm.com/functions/actions) in th
 ### Deploying to IBM Cloud
 
 <p align="center">
-    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https%3A%2F%2Fgithub.com%2Fsberajaw%2Fpoultrysense-bts-ingest&branch=master">
+    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https%3A%2F%2Fgithub.com%2Fsberajaw%2Fpoultrysense-bts-ingest&branch=main">
     <img src="https://cloud.ibm.com/devops/graphics/create_toolchain_button.png" alt="Create toolchain">
     </a>
 </p>

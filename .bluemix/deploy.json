@@ -196,6 +196,18 @@
             "widths": ["40%", "20%", "40%"],
             "items": [
                 {
+                    "type": "label",
+                    "title": "Configuration for Poultry Sense"
+                },
+                {
+                    "type": "label",
+                    "title": ""
+                },
+                {
+                    "type": "label",
+                    "title": "Configuration for IBM Blockchain Transparent Supply"
+                },
+                {
                     "type": "section",
                     "title": "Configuration for Poultry Sense",
                     "items": [

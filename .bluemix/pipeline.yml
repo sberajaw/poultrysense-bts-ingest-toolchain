@@ -49,16 +49,8 @@ stages:
     type: secure
   jobs:
   - name: Deploy
-    type: deployer
-    deploy_type: cf
-    artifact_dir: ''
+    type: builder
     build_type: shell
-    target:
-      region_id: ${REGION_ID}
-      organization: ${ORGANIZATION}
-      space: ${SPACE}
-      application: ${APP}
-      api_key: ${API_KEY}
     script: |-
       #!/bin/bash
       echo ">>> Updating and checking installed version of IBM Cloud CLI…"

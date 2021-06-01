@@ -19,10 +19,7 @@
                 "$ref": "#/messages/deploy.apikeyDescription"
             },
             "type": "string",
-            "pattern": "\\S",
-            "validator": {
-                "v-type": "api-key"
-            }
+            "pattern": "\\S"
         },
         "dev-region": {
             "description": {

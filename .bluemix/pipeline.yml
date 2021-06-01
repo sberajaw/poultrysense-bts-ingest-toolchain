@@ -61,36 +61,57 @@ stages:
       api_key: ${API_KEY}
     script: |-
       #!/bin/bash
-      #set -o xtrace
-      ibmcloud login -a ${CF_TARGET_URL} --apikey ${PIPELINE_BLUEMIX_API_KEY}
-      ibmcloud target --cf -o ${CF_ORG} -s ${CF_SPACE}
+      echo ">>> Updating and checking installed version of IBM Cloud CLI…"
+      ibmcloud update -f -q
+      ibmcloud -v
+      echo ">>> Logging into IBM Cloud…"
+      ibmcloud login --apikey $DEPLOYER_API_KEY -r "us-south"
+      ibmcloud target -g $RESOURCE_GROUP
+      ibmcloud target -o "$ORG" -s "$SPACE"
+      echo ">>> Set CLI context to the target namespace:"
+      ibmcloud fn property set --namespace $ICF_NAMESPACE
+      # echo ">>> Currently Deployed Packages:"
+      # ibmcloud fn package list
+      # echo ">>> Currently Deployed Actions:"
+      # ibmcloud fn action list
+      # echo ">>> Currently Deployed Triggers:"
+      # ibmcloud fn trigger list
+      # echo ">>> Currently Deployed Rules:"
+      # ibmcloud fn rule list
 
-      ################################################################
-      # Install dependencies
-      ################################################################
-      echo 'Installing dependencies...'
-      sudo apt-get -qq update 1>/dev/null
-      sudo apt-get -qq install jq 1>/dev/null
-      sudo apt-get -qq install figlet 1>/dev/null
-
-      ################################################################
-      # Fetch auth credentials
-      ################################################################
-
-      figlet 'IBM Cloud'
-
-      echo 'Retrieving Cloud Functions authorization key...'
-
-      ibmcloud fn api list
-
-      ################################################################
-      # Deploy 
-      ################################################################
-
-      figlet 'Deploy'
-
-      echo "Running deploy..."
-      ibmcloud fn deploy
+      for d in 01_extractor/ 02_transformer/ 03_loader/ $PWD
+      do
+        if [ -f "$d/manifest.yaml" ] 
+        then
+          cwd=$(pwd)
+          cd $d && echo "Processing $d"
+          echo ">>> Replacing ICF_NAMESPACE_ID In Manifest File…"
+          sed -i "s/@ICF_NAMESPACE_ID@/$ICF_NAMESPACE_ID/g" manifest.yaml
+          echo ">>> Replacing POULTRY_SENSE_HOST In Manifest File…"
+          sed -i "s/@POULTRY_SENSE_HOST@/$POULTRY_SENSE_HOST/g" manifest.yaml
+          echo ">>> Replacing POULTRY_SENSE_USERNAME In Manifest File…"
+          sed -i "s/@POULTRY_SENSE_USERNAME@/$POULTRY_SENSE_USERNAME/g" manifest.yaml
+          echo ">>> Replacing POULTRY_SENSE_PASSWORD In Manifest File…"
+          sed -i "s/@POULTRY_SENSE_PASSWORD@/$POULTRY_SENSE_PASSWORD/g" manifest.yaml
+          echo ">>> Replacing BTS_HOST In Manifest File…"
+          sed -i "s/@BTS_HOST@/$BTS_HOST/g" manifest.yaml
+          echo ">>> Replacing BTS_ORG_ID In Manifest File…"
+          sed -i "s/@BTS_ORG_ID@/$BTS_ORG_ID/g" manifest.yaml
+          echo ">>> Replacing BTS_ORG_PREFIX In Manifest File…"
+          sed -i "s/@BTS_ORG_PREFIX@/$BTS_ORG_PREFIX/g" manifest.yaml
+          echo ">>> Replacing BTS_ORG_HQ_GLN In Manifest File…"
+          sed -i "s/@BTS_ORG_HQ_GLN@/$BTS_ORG_HQ_GLN/g" manifest.yaml
+          echo ">>> Replacing BTS_API_KEY In Manifest File…"
+          sed -i "s/@BTS_API_KEY@/$BTS_API_KEY/g" manifest.yaml
+          echo ">>> Contents Of Manifest File:"
+          cat manifest.yaml
+          [ -f "parameters.sh" ] && source parameters.sh
+          echo ">>> Deploying Artifacts Using IBM Cloud CLI…"
+          ibmcloud fn deploy -v
+          echo ">>> Successfully Deployed Actions Using IBM Cloud CLI."
+          cd $cwd
+        fi
+      done
 
 - name: Health Stage
   inputs:

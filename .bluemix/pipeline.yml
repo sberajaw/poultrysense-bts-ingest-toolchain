@@ -65,7 +65,6 @@ stages:
     build_type: shell
     script: |-
       #!/bin/bash
-      set -x
       echo ">>> Updating and checking installed version of IBM Cloud CLI…"
       ibmcloud update -f -q
       ibmcloud -v
@@ -122,35 +121,51 @@ stages:
 - name: Health Stage
   inputs:
   - type: job
-    stage: Build Stage
-    job: Build
+    stage: Deploy Stage
+    job: Deploy
   triggers:
   - type: stage
-  permission:
-    execute: TOOLCHAIN_ADMINS
+  properties:
+  - name: DEPLOYER_API_KEY
+    value: ${DEPLOYER_API_KEY}
+    type: secure
+  - name: REGION
+    value: ${REGION_ID}
+    type: text
+  - name: ORG
+    value: ${ORGANIZATION}
+    type: text
+  - name: SPACE
+    value: ${SPACE}
+    type: text
+  - name: ICF_NAMESPACE
+    value: ${ICF_NAMESPACE}
+    type: text
+  - name: ICF_NAMESPACE_ID
+    value: ${ICF_NAMESPACE_ID}
+    type: text
   jobs:
   - name: Test
-    type: deployer
-    artifact_dir: ''
+    type: builder
     build_type: shell
-    target:
-      region_id: ${REGION_ID}
-      organization: ${ORGANIZATION}
-      space: ${SPACE}
-      application: ${APP}
-      api_key: ${API_KEY}
     script: |-
       #!/bin/sh
-      ibmcloud login -a ${CF_TARGET_URL} --apikey ${PIPELINE_BLUEMIX_API_KEY}
-      ibmcloud target --cf -o ${CF_ORG} -s ${CF_SPACE}
-      if [ "$(ibmcloud fn action invoke CloudFunctionsNodejs/readAll | grep ok:)" != "" ]; then
+      echo ">>> Updating and checking installed version of IBM Cloud CLI…"
+      ibmcloud update -f -q
+      ibmcloud -v
+      echo ">>> Logging into IBM Cloud…"
+      region=$REGION
+      ibmcloud login --apikey $DEPLOYER_API_KEY -r ${region##*:}
+      ibmcloud target -g "Default"
+      ibmcloud target -o "$ORG" -s "$SPACE"
+      echo ">>> Set CLI context to the target namespace:"
+      ibmcloud fn property set --namespace $ICF_NAMESPACE
+      if [ "$(ibmcloud fn action invoke blockchain-transparent-supply/target_login_access_token | grep ok:)" != "" ]; then
         echo "Successfully reached health endpoint."
       else
         echo "Could not reach the health endpoint."
         exit 1
       fi
-    test_type: customimage
-    docker_image: alpine
 hooks:
 - enabled: true
   label: null

@@ -8,6 +8,7 @@ template:
     $ref: "#/messages/template.name"
   description:
     $ref: "#/messages/template.description"
+  icon: icon.svg
   required:
     - repo
     - build

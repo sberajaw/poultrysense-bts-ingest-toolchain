@@ -65,11 +65,13 @@ stages:
     build_type: shell
     script: |-
       #!/bin/bash
+      set -x
       echo ">>> Updating and checking installed version of IBM Cloud CLI…"
       ibmcloud update -f -q
       ibmcloud -v
       echo ">>> Logging into IBM Cloud…"
-      ibmcloud login --apikey $DEPLOYER_API_KEY -r $REGION
+      region=$REGION
+      ibmcloud login --apikey $DEPLOYER_API_KEY -r ${region##*:}
       ibmcloud target -g "Default"
       ibmcloud target -o "$ORG" -s "$SPACE"
       echo ">>> Set CLI context to the target namespace:"

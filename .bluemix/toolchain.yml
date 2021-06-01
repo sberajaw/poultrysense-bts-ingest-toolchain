@@ -55,12 +55,10 @@ services:
           $text: pipeline.yml
         env:
           GIT_REPO: repo
-          APP: "{{services.repo.parameters.repo_name}}"
           REGION_ID: "{{form.pipeline.parameters.dev-region}}"
           ORGANIZATION: "{{form.pipeline.parameters.dev-organization}}"
           SPACE: "{{form.pipeline.parameters.dev-space}}"
           DEPLOYER_API_KEY: "{{form.pipeline.parameters.api-key}}"
-          FN_PACKAGE: "{{form.pipeline.parameters.fn-package}}"
           ICF_NAMESPACE: "{{form.pipeline.parameters.icf-namespace}}"
           ICF_NAMESPACE_ID: "{{form.pipeline.parameters.icf-namespace-id}}"
           POULTRY_SENSE_HOST: "{{form.pipeline.parameters.poultry-sense-host}}"

@@ -8,7 +8,7 @@ template:
     $ref: "#/messages/template.name"
   description:
     $ref: "#/messages/template.description"
-  header: '![Image showing preview of the toolchain](toolchain.svg)'
+  header: '![Image showing preview of the toolchain](toolchain.jpg)'
   icon: icon.svg
   required:
     - repo
